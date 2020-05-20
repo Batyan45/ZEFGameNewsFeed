@@ -6,22 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.batyan.zefgame.App;
 import com.batyan.zefgame.R;
 import com.batyan.zefgame.model.ArticleModel;
-import com.batyan.zefgame.repository.resources.database.ILocalDatabase;
-import com.batyan.zefgame.repository.resources.database.LocalDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public final class ArticleFragment extends Fragment implements ArticleModuleContract.IArticleView {
@@ -59,6 +52,14 @@ public final class ArticleFragment extends Fragment implements ArticleModuleCont
                 Uri.parse(article.getLink()))));
 
         shareButton = view.findViewById(R.id.share_button);
+        shareButton.setOnClickListener(v -> {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, article.getTitle());
+            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.more) + " " + article.getLink());
+            shareIntent.setType("text/plain");
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share)));
+        });
 
         return view;
     }

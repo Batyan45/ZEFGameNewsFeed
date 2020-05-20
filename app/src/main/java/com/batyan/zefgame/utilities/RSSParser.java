@@ -23,8 +23,6 @@ public class RSSParser {
         items = new ArrayList<>();
     }
 
-    //Объект класса парсит строку и формирует список объектов ArticleModel
-
     public List<ArticleModel> getRssItems() {
 
         try {

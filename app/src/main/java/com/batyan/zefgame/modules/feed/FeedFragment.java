@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
 import com.batyan.zefgame.R;
 import com.batyan.zefgame.model.ArticleModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,9 +39,7 @@ public final class FeedFragment extends Fragment implements FeedModuleContract.I
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         listLiveData.observe(this, this::showArticles);
         presenter.downloadArticles();
-        updateButton.setOnClickListener(v -> {
-            presenter.downloadArticles();
-        });
+        updateButton.setOnClickListener(v -> presenter.downloadArticles());
         return view;
     }
 

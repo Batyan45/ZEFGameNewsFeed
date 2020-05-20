@@ -2,6 +2,7 @@ package com.batyan.zefgame.repository.resources.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
+
 import com.batyan.zefgame.model.ArticleModel;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class LocalDatabase implements ILocalDatabase {
 
     private static List<ArticleModel> convertAllToArticleModel(List<ArticleDB> articleDBList) {
         List<ArticleModel> articles = new ArrayList<>();
-        for (ArticleDB articleDB: articleDBList) {
+        for (ArticleDB articleDB : articleDBList) {
             articles.add(convertToArticleModel(articleDB));
         }
         return articles;
@@ -40,11 +41,11 @@ public class LocalDatabase implements ILocalDatabase {
 
     @Override
     public int insertArticle(List<ArticleModel> articleList) {
-        if(articleList.isEmpty()) {
+        if (articleList.isEmpty()) {
             return 0;
         }
         int count = 0;
-        for(int i = 0; i < articleList.size(); i++) {
+        for (int i = 0; i < articleList.size(); i++) {
             ArticleDB articleDB = convertToArticleDB(articleList.get(i));
             mDatabase.articlesDao().insert(articleDB);
             count++;
@@ -59,7 +60,7 @@ public class LocalDatabase implements ILocalDatabase {
     }
 
     @Override
-    public  LiveData<List<ArticleModel>> getAllArticles() {
+    public LiveData<List<ArticleModel>> getAllArticles() {
         return Transformations.map(mDatabase.articlesDao().getAll(), LocalDatabase::convertAllToArticleModel);
     }
 

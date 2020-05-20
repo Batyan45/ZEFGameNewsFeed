@@ -26,7 +26,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .add(fragmentId, fragment)
                     .commit();
         }
-    };
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

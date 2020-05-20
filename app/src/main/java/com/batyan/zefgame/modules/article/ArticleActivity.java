@@ -4,13 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 
-import com.batyan.zefgame.App;
 import com.batyan.zefgame.R;
 import com.batyan.zefgame.model.ArticleModel;
 import com.batyan.zefgame.modules.common.SingleFragmentActivity;
-import com.batyan.zefgame.repository.resources.database.LocalDatabase;
 
 public final class ArticleActivity extends SingleFragmentActivity {
 
@@ -26,7 +23,7 @@ public final class ArticleActivity extends SingleFragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arguments = getIntent().getExtras();
-        if(arguments!=null){
+        if (arguments != null) {
             this.article = (ArticleModel) arguments.get("article");
         }
         getFragment(fragmentId);

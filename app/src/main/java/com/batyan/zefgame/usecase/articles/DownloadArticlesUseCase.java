@@ -9,7 +9,6 @@ import com.batyan.zefgame.utilities.DatabaseService;
 public final class DownloadArticlesUseCase
         extends UseCase<DownloadArticlesUseCase.RequestValues, DownloadArticlesUseCase.ResponseValues> {
 
-    //region Request and Response types
     public static final class RequestValues implements UseCase.IRequestValues {
         private final String url;
 
@@ -25,7 +24,6 @@ public final class DownloadArticlesUseCase
     public static final class ResponseValues implements UseCase.IResponseValues {
 
     }
-    //endregion
 
     private final App application;
 
@@ -35,8 +33,8 @@ public final class DownloadArticlesUseCase
 
     @Override
     protected void execute(final RequestValues requestParameters) {
-            Intent intentDownloadService = new Intent(application, DatabaseService.class);
-            intentDownloadService.putExtra("url", requestParameters.getUrl());
-            application.startService(intentDownloadService);
+        Intent intentDownloadService = new Intent(application, DatabaseService.class);
+        intentDownloadService.putExtra("url", requestParameters.getUrl());
+        application.startService(intentDownloadService);
     }
 }

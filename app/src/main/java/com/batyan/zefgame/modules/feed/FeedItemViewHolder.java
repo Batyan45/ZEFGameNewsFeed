@@ -31,8 +31,8 @@ final class FeedItemViewHolder extends RecyclerView.ViewHolder {
         dateTextView.setText(article.getPubDate());
         titleTextVIew.setOnClickListener(v -> descriptionTextView
                 .setVisibility(descriptionTextView.getVisibility() > View.VISIBLE
-                ? View.VISIBLE
-                : View.GONE));
+                        ? View.VISIBLE
+                        : View.GONE));
         descriptionTextView.setText(article.getDescription());
     }
 

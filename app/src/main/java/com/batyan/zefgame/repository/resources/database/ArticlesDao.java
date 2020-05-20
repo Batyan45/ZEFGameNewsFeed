@@ -1,7 +1,6 @@
 package com.batyan.zefgame.repository.resources.database;
 
 import androidx.lifecycle.LiveData;
-import androidx.paging.DataSource;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -24,6 +23,6 @@ public interface ArticlesDao {
     @Query("SELECT COUNT(id) FROM ArticleDB")
     LiveData<Integer> getRowCount();
 
-    @Query("UPDATE ArticleDB SET isOnScreen = true WHERE id = :id")
+    @Query("UPDATE ArticleDB SET isOnScreen = 1 WHERE id = :id")
     void findArticleToShow(int id);
 }

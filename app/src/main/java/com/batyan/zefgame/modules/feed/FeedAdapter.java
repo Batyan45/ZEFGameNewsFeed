@@ -34,14 +34,11 @@ public final class FeedAdapter extends RecyclerView.Adapter<FeedItemViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final FeedItemViewHolder holder, final int position) {
         final ArticleModel article = articles.get(position);
-        holder.getDescriptionTextView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context itemContext = holder.getDescriptionTextView().getContext();
-                Intent intent = new Intent(itemContext, ArticleActivity.class);
-                intent.putExtra("article", article);
-                itemContext.startActivity(intent);
-            }
+        holder.getDescriptionTextView().setOnClickListener(v -> {
+            Context itemContext = holder.getDescriptionTextView().getContext();
+            Intent intent = new Intent(itemContext, ArticleActivity.class);
+            intent.putExtra("article", article);
+            itemContext.startActivity(intent);
         });
         holder.onBind(article);
     }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZEFGame</string>
+    <string name="share">Поделиться</string>
+    <string name="more">Подробнее:</string>
 </resources>

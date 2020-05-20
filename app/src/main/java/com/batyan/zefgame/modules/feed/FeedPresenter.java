@@ -24,16 +24,16 @@ public final class FeedPresenter implements FeedModuleContract.IFeedModulePresen
     private void obtainArticles() {
         final DownloadArticlesUseCase.RequestValues requestValues = new DownloadArticlesUseCase.RequestValues(Constants.MAIN_PAGE);
 
-            useCaseExecutor.execute(downloadArticlesUseCase, requestValues, new UseCase.IUseCaseCallback<DownloadArticlesUseCase.ResponseValues>() {
-                @Override
-                public void onSuccess(final DownloadArticlesUseCase.ResponseValues response) {
+        useCaseExecutor.execute(downloadArticlesUseCase, requestValues, new UseCase.IUseCaseCallback<DownloadArticlesUseCase.ResponseValues>() {
+            @Override
+            public void onSuccess(final DownloadArticlesUseCase.ResponseValues response) {
 
-                }
+            }
 
-                @Override
-                public void onError(final String errorMessage) {
+            @Override
+            public void onError(final String errorMessage) {
 
-                }
-            });
-        }
+            }
+        });
+    }
 }

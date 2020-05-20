@@ -15,7 +15,7 @@ public class ArticleDB {
     public String link;
     public String author;
     public String pubDate;
-    public boolean isOnScreen;
+    public int isOnScreen;
 
     public static ArticleDB create(int id, String title, String pubDate,
                                    String link, String description, String category, String text) {
@@ -27,7 +27,7 @@ public class ArticleDB {
         result.pubDate = pubDate;
         result.link = link;
         result.author = category;
-        result.isOnScreen = false;
+        result.isOnScreen = 0;
         return result;
     }
 }
