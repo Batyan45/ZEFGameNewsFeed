@@ -1,6 +1,7 @@
 # ZEFGameNewsFeed
 Android Studio Project - NewsFeed for ZEFGame resourse.
 
+Dmitry Bykov, CSC 2020
 
 Features:
 
