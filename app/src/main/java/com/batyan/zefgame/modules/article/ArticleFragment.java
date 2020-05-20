@@ -17,7 +17,7 @@ import com.batyan.zefgame.R;
 import com.batyan.zefgame.model.ArticleModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public final class ArticleFragment extends Fragment implements ArticleModuleContract.IArticleView {
+public final class ArticleFragment extends Fragment {
 
     private TextView dateTextView;
     private TextView textTextView;
@@ -62,10 +62,5 @@ public final class ArticleFragment extends Fragment implements ArticleModuleCont
         });
 
         return view;
-    }
-
-    @Override
-    public void setPresenter(ArticleModuleContract.IArticlePresenter presenter) {
-
     }
 }

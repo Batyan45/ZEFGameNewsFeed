@@ -10,6 +10,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +42,10 @@ public class RSSParser {
                 if (eventType == XmlPullParser.START_TAG) {
 
                     if (xmlPullParser.getName().equalsIgnoreCase("item")) {
-
                         articleModel = new ArticleModel();
                         insideItem = true;
 
                     } else if (xmlPullParser.getName().equalsIgnoreCase("title")) {
-
                         if (insideItem) {
                             String title = xmlPullParser.nextText();
                             articleModel.setTitle(title);
@@ -58,13 +57,13 @@ public class RSSParser {
                         }
                     } else if (xmlPullParser.getName().equalsIgnoreCase("description")) {
                         if (insideItem) {
-                            String description = xmlPullParser.nextText();
-                            articleModel.setDescription(Html.fromHtml(description).toString());
+                            String description = RSSHelper.parseText(xmlPullParser.nextText());
+                            articleModel.setDescription(description);
                         }
                     } else if (xmlPullParser.getName().equalsIgnoreCase("pubDate")) {
                         if (insideItem) {
-                            String pubDate = xmlPullParser.nextText();
-                            articleModel.setPubDate(pubDate);
+                            String date = RSSHelper.parseDate(xmlPullParser.nextText());
+                            articleModel.setPubDate(date);
                         }
                     } else if (xmlPullParser.getName().equalsIgnoreCase("guid")) {
                         if (insideItem) {
@@ -78,8 +77,8 @@ public class RSSParser {
                         }
                     } else if (xmlPullParser.getName().equalsIgnoreCase("content:encoded")) {
                         if (insideItem) {
-                            String content = xmlPullParser.nextText();
-                            articleModel.setText(Html.fromHtml(content).toString());
+                            String content = RSSHelper.parseText(xmlPullParser.nextText());
+                            articleModel.setText(content);
                         }
                     }
                 } else if (eventType == XmlPullParser.END_TAG && xmlPullParser.getName().equalsIgnoreCase("item")) {
@@ -88,7 +87,7 @@ public class RSSParser {
                 }
                 eventType = xmlPullParser.next();
             }
-        } catch (XmlPullParserException | IOException e) {
+        } catch (XmlPullParserException | IOException | ParseException e) {
             e.printStackTrace();
         }
         return items;

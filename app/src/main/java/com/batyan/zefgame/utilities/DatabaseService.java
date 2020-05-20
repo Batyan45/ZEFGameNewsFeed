@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.batyan.zefgame.App;
+import com.batyan.zefgame.R;
 import com.batyan.zefgame.model.ArticleModel;
 import com.batyan.zefgame.repository.resources.database.ILocalDatabase;
 import com.batyan.zefgame.repository.resources.database.LocalDatabase;
@@ -21,8 +22,9 @@ import java.util.List;
 public class DatabaseService extends IntentService {
 
     private String path;
-    Toast toast = Toast.makeText(App.getInstance().getApplicationContext(),
-            "Идет загрузка новостей", Toast.LENGTH_SHORT);
+    App app = App.getInstance();
+    Toast toast = Toast.makeText(app.getApplicationContext(),
+            app.getString(R.string.news_loading), Toast.LENGTH_SHORT);
 
     public DatabaseService() {
         super(DatabaseService.class.getName());
@@ -36,7 +38,7 @@ public class DatabaseService extends IntentService {
             String xml = getData();
             RSSParser parser = new RSSParser(xml);
             List<ArticleModel> articles = parser.getRssItems();
-            ILocalDatabase iLocalDatabase = new LocalDatabase(App.getInstance().getDatabase());
+            ILocalDatabase iLocalDatabase = new LocalDatabase(app.getDatabase());
             iLocalDatabase.insertArticle(articles);
         }
     }
@@ -64,6 +66,8 @@ public class DatabaseService extends IntentService {
 
         } catch (IOException e) {
             e.printStackTrace();
+            toast.setText("Проверьте интернет-соединение");
+            toast.show();
         } finally {
             if (reader != null) {
                 try {
