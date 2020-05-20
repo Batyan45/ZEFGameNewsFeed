@@ -11,3 +11,5 @@ Autoupdate on resume + update on click
 LiveData to observe DB
 
 External browser to open link
+
+Share button
