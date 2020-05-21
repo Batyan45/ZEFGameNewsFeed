@@ -14,7 +14,5 @@ public interface ILocalDatabase {
     LiveData<List<ArticleModel>> getAllArticles();
 
     LiveData<Integer> getCount();
-
-    void updateChosenArticle(int id);
 }
 

@@ -24,6 +24,6 @@ class RSSHelper {
     }
 
     static String parseText(String s) {
-        return Html.fromHtml(s).toString();
+        return Html.fromHtml(s.replaceAll("<figure.+?</figure>", "")).toString();
     }
 }

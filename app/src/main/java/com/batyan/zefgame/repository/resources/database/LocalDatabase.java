@@ -55,11 +55,6 @@ public class LocalDatabase implements ILocalDatabase {
     }
 
     @Override
-    public void updateChosenArticle(int id) {
-        mDatabase.articlesDao().findArticleToShow(id);
-    }
-
-    @Override
     public LiveData<List<ArticleModel>> getAllArticles() {
         return Transformations.map(mDatabase.articlesDao().getAll(), LocalDatabase::convertAllToArticleModel);
     }

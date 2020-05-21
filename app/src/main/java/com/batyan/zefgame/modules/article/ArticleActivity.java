@@ -11,12 +11,12 @@ import com.batyan.zefgame.modules.common.SingleFragmentActivity;
 
 public final class ArticleActivity extends SingleFragmentActivity {
 
-    ArticleModel article;
-    int fragmentId = R.id.fragment_container_article;
+    private ArticleModel article;
+    private final int fragmentId = R.id.fragment_container_article;
 
     @Override
     protected Fragment createFragment() {
-        return new ArticleFragment(article);
+        return ArticleFragment.create(article);
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class ArticleActivity extends SingleFragmentActivity {
         super.onCreate(savedInstanceState);
         Bundle arguments = getIntent().getExtras();
         if (arguments != null) {
-            this.article = (ArticleModel) arguments.get("article");
+            this.article = (ArticleModel) arguments.get(getString(R.string.article));
         }
-        getFragment(fragmentId);
+        initializeFragment(fragmentId);
         setContentView(R.layout.activity_article);
     }
 }

@@ -2,5 +2,13 @@
     <string name="app_name">ZEFGame</string>
     <string name="share">Поделиться</string>
     <string name="more">Подробнее:</string>
-    <string name="news_loading">Идет загрузка новостей</string>
+    <string name="news_loading">Обновление новостей</string>
+    <string name="article_text">Текст статьи</string>
+    <string name="default_date">1 Января 2000 00:00</string>
+    <string name="article_title">Заголовок</string>
+    <string name="default_author">Иванов В.В.</string>
+    <string name="article_description">Описание</string>
+    <string name="connection_error">Проверьте интернет-соединение</string>
+    <string name="article">article</string>
+    <string name="url">url</string>
 </resources>

@@ -13,30 +13,40 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.batyan.zefgame.App;
 import com.batyan.zefgame.R;
 import com.batyan.zefgame.model.ArticleModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public final class ArticleFragment extends Fragment {
 
+    private static final String KEY_ARTICLE = App.getInstance().getString(R.string.article);
     private TextView dateTextView;
     private TextView textTextView;
     private TextView titleTextView;
     private FloatingActionButton linkButton;
     private ImageButton shareButton;
-    ArticleModel article;
 
-    ArticleFragment(ArticleModel article) {
-        super();
-        this.article = article;
+    public static ArticleFragment create(ArticleModel article) {
+        ArticleFragment fragment = new ArticleFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(KEY_ARTICLE, article);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    private ArticleModel getArticle() {
+        assert this.getArguments() != null;
+        return (ArticleModel) this.getArguments().getSerializable(KEY_ARTICLE);
     }
 
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {
-
         final View view = inflater.inflate(R.layout.fragment_article, container, false);
+
+        ArticleModel article = getArticle();
 
         dateTextView = view.findViewById(R.id.date_article);
         dateTextView.setText(article.getPubDate());

@@ -49,7 +49,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/comfortaa"
-        android:text="Заголовок"
+        android:text="@string/article_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="01.01.2000"
+        android:text="@string/default_date"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_article" />
@@ -90,8 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:paddingBottom="150dp"
-            android:text="Текст статьи"
+            android:paddingBottom="180dp"
+            android:text="@string/article_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

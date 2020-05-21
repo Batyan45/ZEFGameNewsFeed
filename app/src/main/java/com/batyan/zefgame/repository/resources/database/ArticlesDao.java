@@ -17,12 +17,9 @@ public interface ArticlesDao {
     @Query("SELECT * FROM ArticleDB ORDER BY id DESC")
     LiveData<List<ArticleDB>> getAll();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insert(ArticleDB news);
 
     @Query("SELECT COUNT(id) FROM ArticleDB")
     LiveData<Integer> getRowCount();
-
-    @Query("UPDATE ArticleDB SET isOnScreen = 1 WHERE id = :id")
-    void findArticleToShow(int id);
 }

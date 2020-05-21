@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.batyan.zefgame.modules.feed.FeedModuleContract.listLiveData;
 
-public final class FeedFragment extends Fragment implements FeedModuleContract.IFeedModuleView {
-
-    private FeedModuleContract.IFeedModulePresenter presenter;
+public final class FeedFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private FloatingActionButton updateButton;
@@ -38,29 +35,12 @@ public final class FeedFragment extends Fragment implements FeedModuleContract.I
         updateButton = view.findViewById(R.id.fab);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         listLiveData.observe(this, this::showArticles);
-        presenter.downloadArticles();
-        updateButton.setOnClickListener(v -> presenter.downloadArticles());
+        updateButton.setOnClickListener(v -> FeedModuleContract.downloadArticles());
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void setPresenter(final FeedModuleContract.IFeedModulePresenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public void showArticles(final List<ArticleModel> articles) {
+    private void showArticles(final List<ArticleModel> articles) {
         final FeedAdapter adapter = new FeedAdapter(articles);
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void showError(final String errorMessage) {
-        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
     }
 }

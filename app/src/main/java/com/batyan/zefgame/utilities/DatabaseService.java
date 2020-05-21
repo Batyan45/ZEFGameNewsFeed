@@ -22,9 +22,11 @@ import java.util.List;
 public class DatabaseService extends IntentService {
 
     private String path;
-    App app = App.getInstance();
-    Toast toast = Toast.makeText(app.getApplicationContext(),
+    private final App app = App.getInstance();
+    private final Toast success = Toast.makeText(app.getApplicationContext(),
             app.getString(R.string.news_loading), Toast.LENGTH_SHORT);
+    private final Toast error = Toast.makeText(app.getApplicationContext(),
+            app.getString(R.string.connection_error), Toast.LENGTH_SHORT);
 
     public DatabaseService() {
         super(DatabaseService.class.getName());
@@ -34,7 +36,7 @@ public class DatabaseService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
 
         if (intent != null) {
-            path = intent.getStringExtra("url");
+            path = intent.getStringExtra(app.getString(R.string.url));
             String xml = getData();
             RSSParser parser = new RSSParser(xml);
             List<ArticleModel> articles = parser.getRssItems();
@@ -45,7 +47,7 @@ public class DatabaseService extends IntentService {
 
     private String getData() {
         BufferedReader reader = null;
-        StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder();
 
         try {
             URL url = new URL(path);
@@ -54,7 +56,7 @@ public class DatabaseService extends IntentService {
             connection.setRequestProperty("Accept-Charset", "UTF-8");
             connection.setReadTimeout(10000);
             connection.connect();
-            toast.show();
+            success.show();
             reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -66,8 +68,7 @@ public class DatabaseService extends IntentService {
 
         } catch (IOException e) {
             e.printStackTrace();
-            toast.setText("Проверьте интернет-соединение");
-            toast.show();
+            error.show();
         } finally {
             if (reader != null) {
                 try {

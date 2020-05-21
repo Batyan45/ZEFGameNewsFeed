@@ -14,17 +14,17 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RSSParser {
-    private String rss;
-    private List<ArticleModel> items;
+class RSSParser {
+    private final String rss;
+    private final List<ArticleModel> items;
 
-    public RSSParser(String rss) {
+    RSSParser(String rss) {
 
         this.rss = rss;
         items = new ArrayList<>();
     }
 
-    public List<ArticleModel> getRssItems() {
+    List<ArticleModel> getRssItems() {
 
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
